@@ -42,6 +42,18 @@ app.get("/api/posts/:id", (req, res) => {
 
 })
 
+app.post('/api/posts', (req, res) => {
+  const newPost = {
+    id: posts.length + 1,
+    title: req.body.title,
+    content: req.body.content
+  };
+  
+  posts.push(newPost);
+
+  res.status(201).json(newPost);
+});
+
 app.listen(PORT, () => {
   console.log(`server is running on PORT: ${PORT}`)
 })
