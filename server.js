@@ -43,6 +43,15 @@ app.get("/api/posts/:id", (req, res) => {
 })
 
 app.post('/api/posts', (req, res) => {
+
+
+if(!req.body.title || !req.body.content){
+  return res.status(400).json({
+    message: "Title and content are required"
+  })
+}
+
+
   const newPost = {
     id: posts.length + 1,
     title: req.body.title,
