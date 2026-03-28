@@ -24,12 +24,12 @@ export const getById = (req, res) => {
 // CREATE A POST
 
 export const createPost = (req, res) => {
-  if(!req.body.title || !req.body.content){
+  if(!req.body.title.trim() || !req.body.content.trim()){
     return res.status(400).json({message: "Title and content are required"});
   }
 
  const newPost = {
-  id: posts.length += 1,
+  id: posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1,
   title: req.body.title,
   content: req.body.content
  };
